@@ -1,0 +1,24 @@
+{
+  "name": "sample",
+  "version": "0.0.1",
+  "description": "sample node CRUD application for the workshop on 6/25",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cdelauder/node_sample.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "mongo"
+  ],
+  "author": "Chris DeLauder",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cdelauder/node_sample/issues"
+  },
+  "homepage": "https://github.com/cdelauder/node_sample"
+}
