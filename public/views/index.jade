@@ -1,3 +1,5 @@
-h1 Hello #{name}!
+ul 
+  each name in names.length ? names : 'nobody'
+    li= 'Hello ' + name + '!''
 
 p Hooray for serving files
