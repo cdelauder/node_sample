@@ -11,24 +11,26 @@ module.exports = function(app) {
         if (err) {
           console.log(err);
         } else {
+          console.log(doc);
           namesArray = doc;
         }
+        res.render('index', {
+          names: namesArray    
+        });
       })
-      res.render('index', {
-        names: namesArray    
-      });
     });
     app.get('/add', function (req, res) {
       res.render('add');
     });
     app.post('/add', function (req, res) {
-      console.log(req.body)
       names.insert({
         name: req.body.name
       }, function (err, doc) {
         if (err) {
+          console.log(err);
           res.send(err.message);
         } else {
+          console.log(doc);
           res.redirect('/');
         }
       })

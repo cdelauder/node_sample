@@ -1,5 +1,8 @@
 ul 
-  each name in names.length ? names : 'nobody'
-    li= 'Hello ' + name + '!''
+  each name in names
+    li= 'Hello ' + name.name + '!' 
+      a(href='/#{name.id}') show
 
-p Hooray for serving files
+p Hooray for serving files 
+
+a(href='/add') Add
