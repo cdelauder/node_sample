@@ -1,6 +1,6 @@
 p #{name.name}
 
-form(method='post' action='/edit/name.id')
+form(method='post' action='/#{name._id}')
   label new name
   input(type='text' name='name') 
   button(type='submit' value='submit') submit

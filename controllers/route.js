@@ -19,19 +19,6 @@ module.exports = function(app) {
         });
       })
     });
-    app.get('/:id', function(req, res) {
-      var ObjectID = require('mongodb').ObjectID;
-      db.collection('names').find({
-        _id: ObjectID.createFromHexString(req.params.id)
-      }, function(err, doc) {
-        if (err) {
-          console.log(err);
-        }
-        res.render('edit', {
-          name: doc
-        });
-      });
-    })
     app.get('/add', function (req, res) {
       res.render('add');
     });
@@ -47,6 +34,37 @@ module.exports = function(app) {
           res.redirect('/');
         }
       })
+    })
+    app.get('/:id', function(req, res) {
+      var ObjectID = require('mongodb').ObjectID;
+      names.findOne({
+        _id: ObjectID.createFromHexString(req.params.id)
+      }, function(err, doc) {
+        if (err) {
+          console.log(err);
+        }
+        console.log(doc)
+        res.render('edit', {
+          name: doc
+        });
+      });
+    })
+    app.post('/:id', function(req, res) {
+      var ObjectID = require('mongodb').ObjectID;
+      names.update({
+        _id: ObjectID.createFromHexString(req.params.id)
+      }, {
+        $set: {
+          name: req.body.name
+        }
+      },
+      function(err, doc) {
+        if (err) {
+          console.log(err);
+        }
+        console.log(doc)
+        res.redirect('/' + req.params.id);
+      });
     })
     app.get('/delete/:id', function (req, res) {
       console.log(typeof(req.params.id))
