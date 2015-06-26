@@ -1,7 +1,9 @@
 ul 
   each name in names
     li= 'Hello ' + name.name + '!' 
-      a(href='/#{name.id}') show
+      a(href='/#{name._id}') edit
+      a(href='/delete/#{name._id}') delete
+
 
 p Hooray for serving files 
 

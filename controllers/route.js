@@ -19,6 +19,19 @@ module.exports = function(app) {
         });
       })
     });
+    app.get('/:id', function(req, res) {
+      var ObjectID = require('mongodb').ObjectID;
+      db.collection('names').find({
+        _id: ObjectID.createFromHexString(req.params.id)
+      }, function(err, doc) {
+        if (err) {
+          console.log(err);
+        }
+        res.render('edit', {
+          name: doc
+        });
+      });
+    })
     app.get('/add', function (req, res) {
       res.render('add');
     });
@@ -35,5 +48,18 @@ module.exports = function(app) {
         }
       })
     })
+    app.get('/delete/:id', function (req, res) {
+      console.log(typeof(req.params.id))
+      var ObjectID = require('mongodb').ObjectID;
+      names.remove({
+        _id: ObjectID.createFromHexString(req.params.id)
+      }, function(err, doc) {
+        if (err) {
+          console.log(err)
+        }
+        console.log('doc',doc)
+        res.redirect('/');
+      });
+    });
   });
 };
